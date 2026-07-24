@@ -88,6 +88,44 @@ npm install
 npm run dev
 ```
 
+## テスト
+
+全 Java / TypeScript ソースに対応するテストを用意しています。
+
+```powershell
+cd C:\devlop\ReceivablesManagement
+.\scripts\test.ps1
+```
+
+個別実行:
+
+```powershell
+# Backend (JUnit 5 / MockMvc / Mockito / DataJpaTest + JaCoCo)
+cd backend
+mvn test
+
+# Frontend (Jest / React Testing Library + coverage)
+cd frontend
+npm install
+npm test
+```
+
+### 結果の確認
+
+| 成果物 | パス |
+|---|---|
+| Backend テスト結果 (Surefire) | `backend/target/surefire-reports/` |
+| Backend カバレッジ (HTML) | `backend/target/site/jacoco/index.html` |
+| Frontend カバレッジ (HTML) | `frontend/coverage/lcov-report/index.html` |
+| Frontend JUnit XML | `frontend/test-results/junit.xml` |
+
+ブラウザで HTML レポートを開く例:
+
+```powershell
+start backend\target\site\jacoco\index.html
+start frontend\coverage\lcov-report\index.html
+```
+
 ## API 一覧
 
 | Method | Path | 説明 |
