@@ -1,13 +1,13 @@
 # Receivables Management（債権管理システム）
 
-Java + Spring Boot + Maven + PostgreSQL + Next.js + React + Docker で構成した債権管理システムの開発環境です。
+Java + Spring Boot + Gradle + PostgreSQL + Next.js + React + Docker で構成した債権管理システムの開発環境です。
 
 ## 構成
 
 | 層 | 技術 | ポート |
 |---|---|---|
 | Frontend | Next.js 14 / React 18 / TypeScript | 3000 |
-| Backend | Spring Boot 3.3 / Java 21 / Maven | 8080 |
+| Backend | Spring Boot 3.3 / Java 21 / Gradle | 8080 |
 | Database | PostgreSQL 16 | 5432 |
 
 ### 機能
@@ -21,8 +21,8 @@ Java + Spring Boot + Maven + PostgreSQL + Next.js + React + Docker で構成し�
 
 - Docker Desktop
 - JDK 21+（ローカル起動時）
-- Maven 3.9+
 - Node.js 20+
+- （任意）Gradle 8.x ※ Wrapper 同梱のため必須ではない
 
 ## いちばん簡単な起動（Docker）
 
@@ -77,7 +77,7 @@ docker compose up -d postgres
 
 ```powershell
 cd C:\devlop\ReceivablesManagement\backend
-mvn spring-boot:run
+.\gradlew.bat bootRun
 ```
 
 ### 3. Frontend
@@ -102,7 +102,7 @@ cd C:\devlop\ReceivablesManagement
 ```powershell
 # Backend (JUnit 5 / MockMvc / Mockito / DataJpaTest + JaCoCo)
 cd backend
-mvn test
+.\gradlew.bat test
 
 # Frontend (Jest / React Testing Library + coverage)
 cd frontend
@@ -114,15 +114,15 @@ npm test
 
 | 成果物 | パス |
 |---|---|
-| Backend テスト結果 (Surefire) | `backend/target/surefire-reports/` |
-| Backend カバレッジ (HTML) | `backend/target/site/jacoco/index.html` |
+| Backend テスト結果 | `backend/build/reports/tests/test/index.html` |
+| Backend カバレッジ (HTML) | `backend/build/reports/jacoco/test/html/index.html` |
 | Frontend カバレッジ (HTML) | `frontend/coverage/lcov-report/index.html` |
 | Frontend JUnit XML | `frontend/test-results/junit.xml` |
 
 ブラウザで HTML レポートを開く例:
 
 ```powershell
-start backend\target\site\jacoco\index.html
+start backend\build\reports\jacoco\test\html\index.html
 start frontend\coverage\lcov-report\index.html
 ```
 
@@ -141,7 +141,7 @@ start frontend\coverage\lcov-report\index.html
 
 ```text
 ReceivablesManagement/
-├── backend/                 # Spring Boot (Maven)
+├── backend/                 # Spring Boot (Gradle)
 ├── frontend/                # Next.js + React
 ├── database/init/           # PostgreSQL 初期スキーマ
 ├── docker-compose.yml

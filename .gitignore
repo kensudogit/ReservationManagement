@@ -1,7 +1,12 @@
-# Java / Maven
+# Java / Gradle
+backend/.gradle/
+backend/build/
+backend/out/
+backend/*.iml
+
+# Legacy Maven (if present)
 backend/target/
 backend/.mvn/
-backend/*.iml
 
 # Node / Next
 frontend/node_modules/
@@ -10,7 +15,6 @@ frontend/out/
 frontend/.env*.local
 frontend/coverage/
 frontend/test-results/
-
 
 # IDE / OS
 .idea/

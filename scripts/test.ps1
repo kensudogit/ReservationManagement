@@ -2,9 +2,13 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path $PSScriptRoot -Parent
 Set-Location $root
 
-Write-Host "=== Backend tests (Maven + JaCoCo) ===" -ForegroundColor Cyan
+Write-Host "=== Backend tests (Gradle + JaCoCo) ===" -ForegroundColor Cyan
 Push-Location "$root\backend"
-mvn -q test
+if (Test-Path ".\gradlew.bat") {
+    .\gradlew.bat test --quiet
+} else {
+    gradle test --quiet
+}
 $backendExit = $LASTEXITCODE
 Pop-Location
 
@@ -20,8 +24,8 @@ Pop-Location
 
 Write-Host ""
 Write-Host "=== Test reports ===" -ForegroundColor Cyan
-Write-Host "Backend Surefire : $root\backend\target\surefire-reports"
-Write-Host "Backend Coverage : $root\backend\target\site\jacoco\index.html"
+Write-Host "Backend Test     : $root\backend\build\reports\tests\test\index.html"
+Write-Host "Backend Coverage : $root\backend\build\reports\jacoco\test\html\index.html"
 Write-Host "Frontend Coverage: $root\frontend\coverage\lcov-report\index.html"
 Write-Host "Frontend JUnit   : $root\frontend\test-results\junit.xml"
 
