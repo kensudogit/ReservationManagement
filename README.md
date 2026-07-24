@@ -28,7 +28,16 @@ Java + Spring Boot + Maven + Oracle + Next.js + React + Docker で構成した�
 
 ```powershell
 cd C:\devlop\ReceivablesManagement
-docker compose up -d --build
+.\scripts\up.ps1
+```
+
+または手動で:
+
+```powershell
+docker buildx use desktop-linux
+docker build -t receivablesmanagement-backend ./backend
+docker build -t receivablesmanagement-frontend ./frontend
+docker compose up -d
 ```
 
 初回の Oracle 起動には数分かかることがあります。
@@ -108,4 +117,4 @@ ReceivablesManagement/
 - テーブルは Spring Data JPA（`ddl-auto=update`）が自動作成します。
 - `database/init/01_schema.sql` は手動確認用の参考 DDL です。
 - 初回起動時にサンプル得意先・債権を自動投入します。
-"# ReservationManagement" 
+"# ReceivablesManagement" 
