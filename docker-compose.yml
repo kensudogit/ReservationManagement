@@ -1,21 +1,22 @@
 services:
-  oracle:
-    image: gvenzl/oracle-xe:21-slim
-    container_name: rm-oracle
+  postgres:
+    image: postgres:16-alpine
+    container_name: rm-postgres
     ports:
-      - "1521:1521"
+      - "5432:5432"
     environment:
-      ORACLE_PASSWORD: OraclePass123
-      APP_USER: receivables
-      APP_USER_PASSWORD: receivables
+      POSTGRES_DB: receivables
+      POSTGRES_USER: receivables
+      POSTGRES_PASSWORD: receivables
     volumes:
-      - oracle-data:/opt/oracle/oradata
+      - postgres-data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD", "healthcheck.sh"]
-      interval: 30s
-      timeout: 10s
-      retries: 20
-      start_period: 120s
+      test: ["CMD-SHELL", "pg_isready -U receivables -d receivables"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
 
   backend:
     build:
@@ -26,12 +27,12 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@//oracle:1521/XEPDB1
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/receivables
       SPRING_DATASOURCE_USERNAME: receivables
       SPRING_DATASOURCE_PASSWORD: receivables
       APP_CORS_ALLOWED_ORIGINS: http://localhost:3000
     depends_on:
-      oracle:
+      postgres:
         condition: service_healthy
 
   frontend:
@@ -47,4 +48,4 @@ services:
       - backend
 
 volumes:
-  oracle-data:
+  postgres-data:

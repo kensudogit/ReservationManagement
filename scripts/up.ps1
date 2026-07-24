@@ -12,4 +12,4 @@ docker compose up -d
 Write-Host ""
 Write-Host "Frontend: http://localhost:3000" -ForegroundColor Green
 Write-Host "Backend : http://localhost:8080/api/health" -ForegroundColor Green
-Write-Host "Oracle  : localhost:1521 / XEPDB1 (receivables/receivables)" -ForegroundColor Green
+Write-Host "Postgres: localhost:5432 / receivables (receivables/receivables)" -ForegroundColor Green

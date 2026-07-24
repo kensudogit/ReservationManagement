@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "customers")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,31 +18,31 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "CUSTOMER_CODE", nullable = false, unique = true, length = 32)
+    @Column(name = "customer_code", nullable = false, unique = true, length = 32)
     private String customerCode;
 
-    @Column(name = "NAME", nullable = false, length = 200)
+    @Column(name = "name", nullable = false, length = 200)
     private String name;
 
-    @Column(name = "CONTACT_NAME", length = 100)
+    @Column(name = "contact_name", length = 100)
     private String contactName;
 
-    @Column(name = "EMAIL", length = 200)
+    @Column(name = "email", length = 200)
     private String email;
 
-    @Column(name = "PHONE", length = 50)
+    @Column(name = "phone", length = 50)
     private String phone;
 
-    @Column(name = "CREDIT_LIMIT")
+    @Column(name = "credit_limit")
     private Long creditLimit;
 
-    @Column(name = "STATUS", nullable = false, length = 20)
+    @Column(name = "status", nullable = false, length = 20)
     private String status;
 
-    @Column(name = "CREATED_AT", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "UPDATED_AT")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

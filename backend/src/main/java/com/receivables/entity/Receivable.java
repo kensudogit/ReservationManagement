@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "RECEIVABLES")
+@Table(name = "receivables")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,38 +20,38 @@ public class Receivable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "INVOICE_NO", nullable = false, unique = true, length = 40)
+    @Column(name = "invoice_no", nullable = false, unique = true, length = 40)
     private String invoiceNo;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @Column(name = "INVOICE_DATE", nullable = false)
+    @Column(name = "invoice_date", nullable = false)
     private LocalDate invoiceDate;
 
-    @Column(name = "DUE_DATE", nullable = false)
+    @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
-    @Column(name = "AMOUNT", nullable = false, precision = 18, scale = 2)
+    @Column(name = "amount", nullable = false, precision = 18, scale = 2)
     private BigDecimal amount;
 
-    @Column(name = "BALANCE", nullable = false, precision = 18, scale = 2)
+    @Column(name = "balance", nullable = false, precision = 18, scale = 2)
     private BigDecimal balance;
 
-    @Column(name = "CURRENCY", nullable = false, length = 3)
+    @Column(name = "currency", nullable = false, length = 3)
     private String currency;
 
-    @Column(name = "STATUS", nullable = false, length = 20)
+    @Column(name = "status", nullable = false, length = 20)
     private String status;
 
-    @Column(name = "DESCRIPTION", length = 500)
+    @Column(name = "description", length = 500)
     private String description;
 
-    @Column(name = "CREATED_AT", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "UPDATED_AT")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

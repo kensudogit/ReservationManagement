@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Receivables Management | 債権管理システム",
-  description: "Java / Spring Boot / Next.js / Oracle 債権管理システム",
+  description: "Java / Spring Boot / Next.js / PostgreSQL 債権管理システム",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

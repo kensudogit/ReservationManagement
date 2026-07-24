@@ -83,7 +83,7 @@ export default function HomePage() {
               {receivables.length === 0 && (
                 <tr>
                   <td colSpan={6} className="muted">
-                    データがありません（API / Oracle の起動を確認してください）
+                    データがありません（API / PostgreSQL の起動を確認してください）
                   </td>
                 </tr>
               )}

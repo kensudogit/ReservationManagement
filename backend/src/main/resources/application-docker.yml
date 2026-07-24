@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@//oracle:1521/XEPDB1
+    url: jdbc:postgresql://postgres:5432/receivables
     username: receivables
     password: receivables
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect

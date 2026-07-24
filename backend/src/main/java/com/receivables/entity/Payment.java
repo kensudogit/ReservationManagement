@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "PAYMENTS")
+@Table(name = "payments")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,25 +21,25 @@ public class Payment {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "RECEIVABLE_ID", nullable = false)
+    @JoinColumn(name = "receivable_id", nullable = false)
     private Receivable receivable;
 
-    @Column(name = "PAYMENT_DATE", nullable = false)
+    @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate;
 
-    @Column(name = "AMOUNT", nullable = false, precision = 18, scale = 2)
+    @Column(name = "amount", nullable = false, precision = 18, scale = 2)
     private BigDecimal amount;
 
-    @Column(name = "METHOD", nullable = false, length = 30)
+    @Column(name = "method", nullable = false, length = 30)
     private String method;
 
-    @Column(name = "REFERENCE_NO", length = 80)
+    @Column(name = "reference_no", length = 80)
     private String referenceNo;
 
-    @Column(name = "NOTE", length = 500)
+    @Column(name = "note", length = 500)
     private String note;
 
-    @Column(name = "CREATED_AT", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

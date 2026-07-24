@@ -1,6 +1,6 @@
 # Receivables Management（債権管理システム）
 
-Java + Spring Boot + Maven + Oracle + Next.js + React + Docker で構成した債権管理システムの開発環境です。
+Java + Spring Boot + Maven + PostgreSQL + Next.js + React + Docker で構成した債権管理システムの開発環境です。
 
 ## 構成
 
@@ -8,7 +8,7 @@ Java + Spring Boot + Maven + Oracle + Next.js + React + Docker で構成した�
 |---|---|---|
 | Frontend | Next.js 14 / React 18 / TypeScript | 3000 |
 | Backend | Spring Boot 3.3 / Java 21 / Maven | 8080 |
-| Database | Oracle XE 21 (`gvenzl/oracle-xe`) | 1521 |
+| Database | PostgreSQL 16 | 5432 |
 
 ### 機能
 
@@ -40,20 +40,18 @@ docker build -t receivablesmanagement-frontend ./frontend
 docker compose up -d
 ```
 
-初回の Oracle 起動には数分かかることがあります。
-
 | URL | 説明 |
 |---|---|
 | http://localhost:3000 | フロントエンド |
 | http://localhost:8080/api/health | API ヘルスチェック |
-| localhost:1521 / XEPDB1 | Oracle |
+| localhost:5432 / receivables | PostgreSQL |
 
-### Oracle 接続情報
+### PostgreSQL 接続情報
 
+- Database: `receivables`
 - User: `receivables`
 - Password: `receivables`
-- SYS password: `OraclePass123`
-- Service: `XEPDB1`
+- Port: `5432`
 
 停止:
 
@@ -69,10 +67,10 @@ docker compose down -v
 
 ## ローカル開発（API / UI を個別起動）
 
-### 1. Oracle のみ Docker 起動
+### 1. PostgreSQL のみ Docker 起動
 
 ```powershell
-docker compose up -d oracle
+docker compose up -d postgres
 ```
 
 ### 2. Backend
@@ -107,14 +105,14 @@ npm run dev
 ReceivablesManagement/
 ├── backend/                 # Spring Boot (Maven)
 ├── frontend/                # Next.js + React
-├── database/init/           # 参考スキーマ SQL
+├── database/init/           # PostgreSQL 初期スキーマ
 ├── docker-compose.yml
 └── README.md
 ```
 
 ## 補足
 
-- テーブルは Spring Data JPA（`ddl-auto=update`）が自動作成します。
-- `database/init/01_schema.sql` は手動確認用の参考 DDL です。
+- テーブルは Spring Data JPA（`ddl-auto=update`）が自動作成・更新します。
+- `database/init/01_schema.sql` は PostgreSQL 初回起動時にも適用されます。
 - 初回起動時にサンプル得意先・債権を自動投入します。
-"# ReceivablesManagement" 
+- Railway デプロイ時は PostgreSQL プラグインを追加し、`SPRING_DATASOURCE_URL` 等を設定してください。
