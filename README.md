@@ -1,5 +1,7 @@
 # Receivables Management（債権管理システム）
 
+> **Repository naming note:** The current GitHub repository name is `ReservationManagement`, but this implementation is a **receivables-management system**. The intended final repository name is `ReceivablesManagement`. The source code remains here until the GitHub repository rename is performed.
+
 Java + Spring Boot + Maven + PostgreSQL + Next.js + React + Docker で構成した債権管理システムの開発環境です。
 
 ## 構成
